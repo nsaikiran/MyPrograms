@@ -1,0 +1,28 @@
+# In receipe section, we write commands to update the target.			\
+Every command written in a line will be executed in an instance of shell	\
+So, if the commands are dependent on each other they have to be mentioned	\
+in single line.
+
+
+
+.PHONY : home parent-dir pwd
+#										\
+The first target (except starting with . like .PHONY ) will be the main target	\
+Hence when I run with dummy as a target it assumes home as main target even if	\
+it is PHONY target. And there is no file  ( home ) exists hence it will execute	\
+the receipe given (blindly). So, I am diverting make with dummy as a target 	\
+which doesn't dependent on anything and have no receipe.
+
+dummmy :
+	
+home :
+	cd ; pwd
+	echo "home directory "
+
+parent-dir:
+	cd .. ; pwd
+	echo "Parent directory of present working directory"
+
+pwd:
+	pwd
+	echo "Present working directory"

@@ -1,0 +1,7 @@
+		BIO-DATA
+
+Name		: Sai Kiran Naragam.
+College		: Rajiv Gandhi University of Knowledge Technologies, Nuzvid Campus.
+Course		: B.Tech, Computer Science and Engineering.
+Year		: 6 (Integrated B.Tech PUC(2) + Engg (4)).
+
