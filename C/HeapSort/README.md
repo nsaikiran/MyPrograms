@@ -1,9 +1,9 @@
 # Heapsort implementation
 
 ## Important files
-1.HeapSort.c
-2.HeapSort.h
-3.HeapMacros.h
+1. HeapSort.c
+2. HeapSort.h
+3. HeapMacros.h
 
 ## Directions to use
 1. Include *HeapSort.h* in your source code.
