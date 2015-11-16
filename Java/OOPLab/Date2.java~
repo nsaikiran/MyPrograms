@@ -17,7 +17,7 @@ abstract class Day{
 	
 	}
 
-public class Date extends Day {
+class Date extends Day {
 
 	Date(int day,int month,int year){
 		super(day,month,year);

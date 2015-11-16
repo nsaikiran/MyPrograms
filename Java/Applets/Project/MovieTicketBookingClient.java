@@ -79,6 +79,7 @@ public class MovieTicketBookingClient extends Applet implements ActionListener {
 		phnoPanel.add(phno);
 		
 		passwdPanel.add(new Label("Password:",Label.LEFT));
+		passwd.setEchoChar("*");
 		passwdPanel.add(passwd);
 		
 		buttons.add(clearButton,BorderLayout.NORTH);
@@ -115,7 +116,7 @@ public class MovieTicketBookingClient extends Applet implements ActionListener {
 	public void actionPerformed(ActionEvent action){
 		//String pressedButton = action.getActionCommand();
 		if (action.getSource() == homeButton){
-			centerPanel.setBackground(Color.blue);
+			//centerPanel.setBackground(Color.blue);
 			}
 		else if (action.getSource() == loginButton){
 			state |= loginState;
@@ -123,7 +124,7 @@ public class MovieTicketBookingClient extends Applet implements ActionListener {
 			dummy.add(introduction,BorderLayout.NORTH);
 			dummy.add(userInput,BorderLayout.SOUTH);
 			userInput.remove(namePanel);
-			centerPanel.setBackground(Color.green);
+			//centerPanel.setBackground(Color.green);
 			}
 		else if (action.getSource() == signupButton){
 			state |= registerState;
@@ -131,7 +132,7 @@ public class MovieTicketBookingClient extends Applet implements ActionListener {
 			dummy.add(introduction,BorderLayout.NORTH);
 			dummy.add(userInput,BorderLayout.SOUTH);
 			userInput.add(namePanel);
-			centerPanel.setBackground(Color.yellow);
+			//centerPanel.setBackground(Color.yellow);
 			}
 		else if (action.getSource() == theatreButton){
 			state |= theatreState;
