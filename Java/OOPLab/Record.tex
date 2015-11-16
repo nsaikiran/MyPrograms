@@ -1,0 +1,29 @@
+\documentclass[9pt]{report}
+
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{listings}
+
+lstdefinestyle{customc}{
+r{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}u
+ belowcaptionskip=1\baselineskip,
+breaklines=true,
+frame=L,
+xleftmargin=\parindent,
+language=Java,
+showstringspaces=false,
+basicstyle=\footnotesize\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{blue},
+stringstyle=\color{orange},
+}
+
+\lstset{escapechar=@,style=customc}
+
+\begin{document}
+\lstinputlisting[caption=Scheduler, style=customc]{Date.java}
+
+\end{document}

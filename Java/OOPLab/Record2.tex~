@@ -1,0 +1,76 @@
+\documentclass[10pt,a4paper,oneside]{report}
+\usepackage[outer=1cm,inner=3cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+
+%In style we can specify size color et cetera(etc = and so forth or and other things) .
+\lstset{% general command to set parameter(s)
+	basicstyle=\small, %\ttfamily %tiny %large% print whole listing small
+	keywordstyle=\color{green},%\bfseries\underbar, % underlined bold black keywords
+	identifierstyle=,% nothing happens
+	commentstyle=\color{blue}\small,%\small,%\textbf, % white comments
+	stringstyle=\ttfamily,% typewriter type for strings
+	showstringspaces=false, % no special string spaces
+	frame=single,%all sides single rule
+	framerule=0.1pt,%rule size
+	backgroundcolor=,%\color{yellow},
+	language=C,%language
+	numbers = left, %right % where to keep line numbers
+	stepnumber = 1 %2 %none to turn off% line numbers step . OF COURSE WE WILL NOT BE NEEDING IT.
+	}
+
+\begin{document}
+
+\chapter{Introduction}
+\section{ Important Points }
+\begin{itemize}
+\item Most of the time it is strongly recommended to name the compilation-unit/translation unit
+with the name of one of the \texttt{class}es/\texttt{type}s declared in it. You need not to follow
+this unless One of the types(if the compilation unit has more than one type) or the only type
+
+\begin{itemize}
+\item is referred to by code in other compilation units of the package in which the type is declared.
+\item is declared public (and therefore is potentially accessible from code in other packages).
+\end{itemize}
+
+We use the name of the referred type or public-declared type to name the compilation-unit.\cite{site3}\\
+The above scenario is observable during compile-time only.
+%We can observe this by writing two compilation-units(with one or more types) under a package(may be unnamed)
+%with one of the compilation-unit is referred to by code i
+\item We no need to explicitly import types of the same package ( It is an error if we do!).
+\item The term "constructor" is misleading since, as soon as you enter the constructor, the new object has actually been created for you.
+ The job of the constructor is to ensure that the new object is in a valid state, usually by giving initial values to the instance variables of the object. 
+So a "constructor" should really be called an "initializer."\cite{site1}
+\item Class constructor only initializes the data memebers and there is some \texttt{other}\footnote{\url{https://docs.oracle.com/javase/tutorial/java/javaOO/objectcreation.html}} mechanism by which an object is created.
+\end{itemize}
+
+
+
+\chapter{Operations on objects of String class}
+
+\quad This program is to demonstrate operations on objects of String class, 
+available in \texttt{java.lang}. Objects of String are immutable. 
+We can use \texttt{StringBuffer} class to operate on mutable strings.
+
+% \lstset{numbers=left, stepnumber=1, frame=single,}
+% \lstset{language=Java, caption=Descriptive Caption Text, label=DescriptiveLabel}
+
+\lstset{language=Java,numbers=left,stepnumber=1,frame=,}
+\lstinputlisting[language=Java]{Demo.java}
+
+\chapter{Generic Types}
+A \textit{generic type} is a generic class or interface that is parameterized over
+ \textit{types}\cite{site2}.
+We can't use \textit{primitive} data types as \texttt{type argument} to generic classes.
+\lstinputlisting{VectorDemo.java}
+
+\begin{thebibliography}{99}
+\bibitem{site1}
+\url{http://www.cis.upenn.edu/~matuszek/General/JavaSyntax/constructors.html}
+\bibitem{site2}
+\url{https://docs.oracle.com/javase/tutorial/java/generics/why.html}
+\bibitem{site3}
+\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.6}
+\end{thebibliography}
+\end{document}
