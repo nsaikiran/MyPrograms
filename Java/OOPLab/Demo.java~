@@ -1,7 +1,8 @@
 /*
 Author: saikiran638
-Description: This program demonstrate operations on String objects
-No object has been created for user-defined classes.
+Description: 
+	This program demonstrate operations on String objects
+	No object has been created for user-defined classes.
 */
 
 class StringDemo{

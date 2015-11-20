@@ -38,7 +38,6 @@ class StringDemo{
 		String[] strs = str1.split( "i" );
 		for ( int index = 0 ; index < strs.length ; ++index )
 			System.out.println( strs[index] );
-		
 		// Changing contents of a string
 		char[] chars = new char[ str1.length() ];
 	 	str1.getChars(0,str1.length(), chars, 0 );
@@ -52,9 +51,7 @@ class StringDemo{
 		
 		//Trim the string
 		set("  saikiran638  ","saikiran");
-
 		System.out.println( str1.trim() );
-	
 		}
 	}
 

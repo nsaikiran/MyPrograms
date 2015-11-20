@@ -16,11 +16,11 @@ public class WrapperClassDemo {
 
 	public static void main(String args[]) {
 		Scanner stdin 	= new Scanner(System.in);
-		System.out.println("Priciple Amount >> ");
+		System.out.println("Priciple Amount : ");
 		float p		= stdin.nextFloat();
-		System.out.println("Time >>");
+		System.out.println("Time :");
 		int t 		= stdin.nextInt();
-		System.out.println("Rate >>");
+		System.out.println("Rate :");
 		float r		= stdin.nextFloat();
 		Integer time	= new Integer(t);
 		Float rate	= new Float(r);
