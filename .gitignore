@@ -5,4 +5,5 @@
 *.jpeg
 *.pdf
 *.pyc
-
+*.docx
+*.pptx
