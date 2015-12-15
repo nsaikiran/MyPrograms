@@ -32,3 +32,41 @@ void writeBits( unsigned char* bitString ) {
 		printf("\n.. Encoded %u\n",array[index] );
 	free( array );
 	}
+
+# define LIMIT 10
+
+void writeBufferedString( unsigned char*const bitString , int INIT,int FINISH) {
+	static unsigned index	= 0U;
+	static char* string	= NULL;
+	if ( /*FLAGS &*/ INIT )
+		string	= (char*)calloc(LIMIT,sizeof(char));
+	if ( /*FLAGS &*/ FINISH ) { // no more data. flush
+		string[ index ] = 0;
+		printf("final %s \n",string);
+		index	= 0;
+		free(string);
+		string	= NULL;
+		}
+	if ( !bitString ) return;
+	printf("Got %s %d \n",bitString,index);
+	if ( index + strlen( bitString ) <= LIMIT - 1 ) { // < 9 
+		strcpy (string+index,bitString);
+		index += strlen(bitString);
+		if ( index == LIMIT - 1 ){
+			printf("final %s \n",string);//flush
+			index	= 0;
+			}
+		}
+	else {
+		printf("here\n");
+		int n	= (LIMIT - 1) - index;
+		printf("n = %d\n",n);
+		strncpy( string+index,bitString,n);
+		string[LIMIT - 1] = 0;
+		printf("final %s \n",string);
+		index	= 0;
+		printf("here0\n");
+		writeBufferedString( bitString + n ,0,0);
+		}
+	}
+# undef LIMIT

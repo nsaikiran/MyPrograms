@@ -148,9 +148,22 @@ void buildTree(void) {
 	for ( int var = 0; var <128 ;++ var ) {
 		if ( characters[var].count ){
 			printf("%c\t%s\n",var,characters[var].bitstring);
-			writeBits( characters[var].bitstring );
+		//	writeBits( characters[var].bitstring );	
 			}
 		}
 	writeBits( "011111111001" );
+	writeBufferedString( NULL,1,0 );//start
+	printf("OK\n");
+	/*for ( int var = 0; var <128 ;++ var ) {
+		if ( characters[var].count ){
+		//	printf("%c\t%s\n",var,characters[var].bitstring);
+		//	writeBits( characters[var].bitstring );	
+			writeBufferedString(characters[var].bitstring,0,0);
+			}
+		}*/
+	writeBufferedString("hello",0,0);
+	writeBufferedString("hello",0,0);
+writeBufferedString("hello",0,0);writeBufferedString("hello",0,0);writeBufferedString("hello",0,0);writeBufferedString("hellosaikirankasdlkjasdf",0,0);
+	writeBufferedString(NULL,0,1);//stop
 	}
 
