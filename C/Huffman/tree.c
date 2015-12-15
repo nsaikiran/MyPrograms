@@ -1,11 +1,15 @@
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
+# include "Compress.h"
 
 # define LETTER 	0
 # define NUMBER		1
 # define ILLEGAL	2
 
-extern unsigned long int frequencies[];
+extern info characters[];
+char* buffer	= NULL;
+unsigned long currsize	= BUFSIZ;
 
 typedef struct block Node;
 
@@ -43,15 +47,15 @@ void addToQueue(Node* node) {
 	Node* prev	= NULL;
 	unsigned long	nodeVal,currVal;
 	
-	if ( node -> data.datatype.type == LETTER ) nodeVal = frequencies[ node -> data.dataletter.letter];
+	if ( node -> data.datatype.type == LETTER ) nodeVal = characters[ node -> data.dataletter.letter].count;
 	else nodeVal	= node -> data.datanum.num;
 
 
 	for ( ; curr ; curr = curr -> right ) {
-		if ( curr -> data.datatype.type	== LETTER ) currVal = frequencies[ curr -> data.dataletter.letter] ;
+		if ( curr -> data.datatype.type	== LETTER ) currVal = characters[ curr -> data.dataletter.letter].count ;
 		else currVal	= curr -> data.datanum.num;
 		
-		if ( nodeVal < currVal ) break; // we may use <= . it just gives small effect.
+		if ( nodeVal <= currVal ) break; // we may use < . it just gives small effect.
 		prev	= curr;
 		}
 
@@ -66,21 +70,21 @@ void addToQueue(Node* node) {
 	}
 
 void printQueue (void) {
-	for ( Node* temp = head; temp; temp= temp -> right ) printf("%lu\n",frequencies[ temp->data.dataletter.letter] );
+	for ( Node* temp = head; temp; temp= temp -> right ) printf("%lu\n",characters[ temp->data.dataletter.letter].count );
 	}
 
 Node* buildQueue(void){
 	
 	int index	= 0;
 
-	for (; 	index 	< 128 && !frequencies[index] ; ++index );
+	for (; 	index 	< 128 && !characters[index].count ; ++index );
 	if  ( 	index	< 128 ) { 
 		head 	= createNode();
 		head -> data.datatype.type	= LETTER;
 		head -> data.dataletter.letter	= index;
 		Node* temp	= NULL;
 		for (index++;	index	< 128; ++index)
-			if ( frequencies[index] ){
+			if ( characters[index].count ){
 				temp=createNode();
 				temp -> data.datatype.type 	= LETTER;
 				temp -> data.dataletter.letter	= index;
@@ -89,11 +93,22 @@ Node* buildQueue(void){
 		}
 	}
 
-void traverseTree( Node* node ) {
+void traverseTree( Node* node ,long index) {
 	if ( !node ) return;
-	traverseTree( node -> bottomleft );
-	traverseTree( node -> bottomright);
-	if ( node -> data.datatype.type	== LETTER ) printf("'%c'",node -> data.dataletter.letter);
+	if ( !node -> bottomleft && !node -> bottomright ) {
+		buffer[index]	= '\0';
+		printf ("'%c'",node->data.dataletter.letter);
+		characters[node	-> data.dataletter.letter].bitstring	 = (unsigned char*)malloc( strlen(buffer)+1 );
+		strcpy(	characters[node	-> data.dataletter.letter].bitstring , buffer );
+		return;
+		}
+	
+	if ( index == currsize-1 ) buffer=realloc(buffer,currsize+BUFSIZ);
+	buffer[index]	= '0';
+	traverseTree( node -> bottomleft ,index+1);
+	buffer[index]	= '1';
+	traverseTree( node -> bottomright, index+1);
+	if ( node -> data.datatype.type	== LETTER ) printf("'%c'", node -> data.dataletter.letter);
 	else printf("%lu",node -> data.datanum.num);
 	}
 
@@ -113,11 +128,11 @@ void buildTree(void) {
 		temp	-> bottomright	-> right = NULL;
 		
 		if ( temp -> bottomleft -> data.datatype.type == LETTER ) 
-			lvalue	= frequencies[ temp -> bottomleft -> data.dataletter.letter ];
+			lvalue	= characters[ temp -> bottomleft -> data.dataletter.letter ].count;
 		else 	lvalue	= temp -> bottomleft -> data.datanum.num;
 
 		if ( temp -> bottomright -> data.datatype.type == LETTER ) 
-			rvalue = frequencies[ temp -> bottomright -> data.dataletter.letter ];
+			rvalue = characters[ temp -> bottomright -> data.dataletter.letter ].count;
 		else rvalue	= temp -> bottomright -> data.datanum.num;
 
 		temp -> data.datatype.type = NUMBER;
@@ -126,6 +141,16 @@ void buildTree(void) {
 		if ( !head ) head	= temp;
 		else addToQueue( temp );
 		}
-	traverseTree(head);
+	buffer	= (unsigned char*)malloc	( currsize );
+	traverseTree(head,0UL);
+	
+	// tester
+	for ( int var = 0; var <128 ;++ var ) {
+		if ( characters[var].count ){
+			printf("%c\t%s\n",var,characters[var].bitstring);
+			writeBits( characters[var].bitstring );
+			}
+		}
+	writeBits( "011111111001" );
 	}
 

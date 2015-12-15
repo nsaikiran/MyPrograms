@@ -3,11 +3,11 @@
 # include <string.h>
 # include "Compress.h"
 
-unsigned long int frequencies[128];
+info characters[128];
 
 void findFrequencies( unsigned char *const buffer ) {
 	for ( register int index = 0; index < strlen(buffer); ++index )
-		frequencies[buffer[index]]++;
+		characters[buffer[index]].count++;
 	}
 
 int main( int nargs, const char * const * const args ) {
@@ -16,19 +16,17 @@ int main( int nargs, const char * const * const args ) {
 	if ( !infile ) exit(EXIT_FAILURE);
 	
 	unsigned char buffer[BUFSIZ];
-	for ( register int index  = 0;	index < 128; ++index )	frequencies[index]^=frequencies[index];
+	for ( register int index  = 0;	index < 128; ++index )	characters[index].count^=characters[index].count;
 	
 	while ( !feof(infile) ) {
 		if ( !fgets( buffer, BUFSIZ, infile)) continue;
 		
-		//for ( int t=0;t<strlen(buffer);++t) printf("%c %d \n",buffer[t],buffer[t]); printf("doone");
-
 		findFrequencies( buffer );
 		}
 
 	for ( register int index = 0;	index < 128; ++index )	
-		if (frequencies[index]) 
-			printf("'%c' %10lu\n",index,frequencies[index]);
+		if (characters[index].count) 
+			printf("'%c' %10lu\n",index,characters[index].count);
 	
 	printf("trur or false : %d\n",'\n'==10);
 	buildTree();
