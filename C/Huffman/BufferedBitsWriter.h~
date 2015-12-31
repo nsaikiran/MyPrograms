@@ -1,0 +1,4 @@
+# define INITWRITER	0
+# define ENDWRITER	1
+# define DO			0
+# define DONOT		1

@@ -4,6 +4,7 @@
 # include "Compress.h"
 
 info characters[128];
+FILE* ofile	= NULL;
 
 void findFrequencies( unsigned char *const buffer ) {
 	for ( register int index = 0; index < strlen(buffer); ++index )
@@ -28,7 +29,9 @@ int main( int nargs, const char * const * const args ) {
 		if (characters[index].count) 
 			printf("'%c' %10lu\n",index,characters[index].count);
 	
-	printf("trur or false : %d\n",'\n'==10);
+	//printf("trur or false : %d\n",'\n'==10);
+	ofile	= fopen(args[2],"w");
 	buildTree();
+	writeHeader();
 	return EXIT_SUCCESS;
 	}

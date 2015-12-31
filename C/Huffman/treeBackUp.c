@@ -8,10 +8,8 @@
 # define ILLEGAL	2
 
 extern info characters[];
-extern FILE* ofile;
 char* buffer	= NULL;
 unsigned long currsize	= BUFSIZ;
-
 
 typedef struct block Node;
 
@@ -155,13 +153,27 @@ void buildTree(void) {
 		//	writeBits( characters[var].bitstring );	
 			}
 		}
+	writeBits( "011111111001" );
+	writeBufferedString( NULL,1,0 );//start
+	printf("OK\n");
+	/*for ( int var = 0; var <128 ;++ var ) {
+		if ( characters[var].count ){
+		//	printf("%c\t%s\n",var,characters[var].bitstring);
+		//	writeBits( characters[var].bitstring );	
+			writeBufferedString(characters[var].bitstring,0,0);
+			}
+		}*/
+	writeBufferedString("hello",0,0);
+	writeBufferedString("hello",0,0);
+writeBufferedString("hello",0,0);writeBufferedString("hello",0,0);writeBufferedString("hello",0,0);writeBufferedString("hellosaikirankasdlkjasdf",0,0);
+	writeBufferedString(NULL,0,1);//stop
+	//
+	printf("\nBuffere bits\n\n");
+	writeBufferedBits(NULL,1,0);
+	writeBufferedBits("1111000",0,0);
+	writeBufferedBits("00010",0,0);
+	writeBufferedBits("1101",0,0);
+	writeBufferedBits("00101",0,0);
+	writeBufferedBits(NULL,0,1);
 	}
-
-void writeHeader(void) {
-	
-	for (int index=0;index<128;++index)
-		if ( characters[index].count )
-			fprintf(ofile,"%c%s\n",index,characters[index].bitstring);
-	}
-
 
