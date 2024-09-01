@@ -1,5 +1,9 @@
 from collections import defaultdict
 
+"""
+Refer https://docs.python.org/3/reference/datamodel.html#emulating-container-types for more details.
+Or look for dunder methods in python
+"""
 class MyCounter(defaultdict):
     def __init__(self):
         super().__init__(int)
