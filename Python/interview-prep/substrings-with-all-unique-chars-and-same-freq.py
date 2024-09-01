@@ -195,6 +195,7 @@ def optimze_same_count_verification(input_str):
   
 """
 Note: Deleting the character once its count reaches 0 is important. Maybe we can create a subclass of defaultdict(int) which deletes the item once it count reaches 0.
+Maybe we can subclass defaultdict and override __setitem__ to delete the key if value is 0. Refer default-dict-subclass.py
 """
 
 if __name__ == "__main__":
