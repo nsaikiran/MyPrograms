@@ -1,0 +1,4 @@
+- Go to `src/` folder
+- Run `javac -d bin src/**/*.java`  command to compile all source files and place the .class file in bin folder. This genrates the same structure as of the source files
+- Go to `bin/` folder
+- Run `java blog.saikiran.driver.LRUCacheDriver` command to start the driver
